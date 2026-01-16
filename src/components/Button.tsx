@@ -1,17 +1,26 @@
+// Your Button component
 type buttonVariant = "primary" | "secondary" | "danger";
 type buttonSize = "sm" | "md" | "lg";
 
-interface IButton {
+interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  variant: buttonVariant;
-  size: buttonSize;
+  variant?: buttonVariant;
+  size?: buttonSize;
+  className?: string;
 }
 
-export const Button = ({ children, variant, size }: IButton) => {
+export const Button = ({
+  children,
+  variant = "primary",
+  size = "md",
+  className = "",
+  ...props
+}: IButton) => {
   const bgVariant: Record<buttonVariant, string> = {
-    primary: "bg-blue-900 w-full text-white hover:bg-blue-600",
-    secondary: "bg-gray-500 w-full text-white hover:bg-gray-600",
-    danger: "bg-red-500 w-full text-white hover:bg-red-600",
+    primary: "bg-blue-900 text-white hover:bg-blue-600",
+    secondary:
+      "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-900  transition-all duration-200 group",
+    danger: "bg-red-500 text-white hover:bg-red-600",
   };
 
   const bSize: Record<buttonSize, string> = {
@@ -21,7 +30,10 @@ export const Button = ({ children, variant, size }: IButton) => {
   };
 
   return (
-    <button className={` ${bgVariant[variant]} ${bSize[size]}} rounded-md`}>
+    <button
+      {...props}
+      className={`w-full ${bgVariant[variant]} ${bSize[size]} rounded-md ${className}`}
+    >
       {children}
     </button>
   );
