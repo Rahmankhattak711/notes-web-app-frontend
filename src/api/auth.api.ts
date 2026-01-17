@@ -9,4 +9,8 @@ export const signupApi = (data: {
   username: string;
 }) => api.post("/auth/signup", data);
 
-export const refreshApi = () => api.post("/auth/refresh");
+export const userProfileApi = (userId: string) => {
+  return api.get(`/auth/profile/${userId}`);
+};
+
+

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../components/Button";
 import { Icons } from "../icons/icons";
+import { Link } from "react-router-dom";
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -211,7 +212,7 @@ export default function Signup() {
               >
                 {isPending ? (
                   <span className="flex items-center justify-center">
-                    <Icons.loading/>
+                    <Icons.Loading />
                     Creating account...
                   </span>
                 ) : (
@@ -265,12 +266,11 @@ export default function Signup() {
             <div className="mt-2 pt-4 border-t border-gray-200">
               <p className="text-center text-gray-600">
                 Already have an account?{" "}
-                <a
-                  href="/login"
-                  className="text-blue-900 hover:text-blue-600 font-semibold"
+                <Link
+                  to="/Login"
                 >
-                  Log in
-                </a>
+                  <span className="text-blue-500">Login</span>
+                </Link>
               </p>
             </div>
           </div>

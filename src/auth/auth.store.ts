@@ -1,15 +1,29 @@
-let accessToken: string | null = null;
-let refreshToken: string | null = null;
+ import { jwtDecode } from "jwt-decode";
 
-export const setTokens = (access: string, refresh: string) => {
-  accessToken = access;
-  refreshToken = refresh;
+const TOKEN_KEY = 'accessToken';
+
+export const setTokens = (access: string) => {
+  localStorage.setItem(TOKEN_KEY, access);
+   window.dispatchEvent(new Event('storage'));
 };
 
-export const getAccessToken = () => accessToken;
-export const getRefreshToken = () => refreshToken;
+export const getAccessToken = () => {
+  return localStorage.getItem(TOKEN_KEY);
+};
 
 export const clearTokens = () => {
-  accessToken = null;
-  refreshToken = null;
+  localStorage.removeItem(TOKEN_KEY);
+  window.dispatchEvent(new Event('storage'));
+};
+
+export const getUserIdFromToken = () => {
+  const accessToken = getAccessToken();
+  if (!accessToken) return null;
+
+  try {
+    const decoded: any = jwtDecode(accessToken);
+    return decoded.sub || decoded.id;
+  } catch {
+    return null;
+  }
 };
