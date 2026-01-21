@@ -3,6 +3,7 @@ import { Icons } from "../icons/icons";
 import UserProfile from "./UserProfile";
 import { useLogout } from "../hooks/useAuth";
 import { useNotes } from "../hooks/useNote";
+import { Link } from "react-router-dom";
 
 export const SideBar = () => {
   const { mutate: logout } = useLogout();
@@ -37,12 +38,15 @@ export const SideBar = () => {
       <div className="flex-1 px-4 py-6 overflow-y-auto">
         <ul className="space-y-2">
           <li>
-            <Button variant="secondary" size="md">
-              <div className="text-gray-600 group-hover:text-blue-900 transition-colors">
-                <Icons.Plus />
-              </div>
-              <span className="font-medium text-sm">Add Notes</span>
-            </Button>
+              {notes.length > 0 && (
+                <Link
+                  to="/create-note"
+                  className=" flex items-center mb-6 gap-4 text-sm text-gray-500  hover:border-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <Icons.Plus />
+                  New Note
+                </Link>
+              )}
           </li>
           {notes.map((note: any) => (
             <p className="text-xs bg-gray-100 p-2 rounded-md mt-1 text-gray-900">

@@ -134,8 +134,7 @@ const Hero = () => {
             </div>
           ))}
 
-          {/* Create New Note Card */}
-          {notes.length > 0 && (
+           {notes.length > 0 && (
             <Link
               to="/create-note"
               className="rounded-xl border-2 border-dashed border-gray-300 flex items-center justify-center flex-col gap-4 text-sm text-gray-500 h-64 hover:border-gray-400 hover:text-gray-600 transition-colors"
@@ -146,8 +145,7 @@ const Hero = () => {
           )}
         </div>
 
-        {/* Empty State */}
-        {notes.length === 0 && (
+         {notes.length === 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
               to="/create-note"
