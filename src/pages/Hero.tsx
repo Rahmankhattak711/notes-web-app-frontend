@@ -1,4 +1,3 @@
-// pages/Hero.tsx
 import { useDeleteNote, useNotes } from "../hooks/useNote";
 import { Icons } from "../icons/icons";
 import { Link } from "react-router-dom";

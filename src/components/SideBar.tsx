@@ -2,12 +2,14 @@ import { Button } from "./Button";
 import { Icons } from "../icons/icons";
 import UserProfile from "./UserProfile";
 import { useLogout } from "../hooks/useAuth";
+import { useNotes } from "../hooks/useNote";
 
 export const SideBar = () => {
   const { mutate: logout } = useLogout();
+  const { data } = useNotes();
+  const notes = data?.notes || data?.posts || data || [];
   return (
     <aside className="flex flex-col justify-between w-72 h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Header */}
       <div className="p-6">
         <div className="flex items-center gap-3">
           <div className="bg-blue-900 p-2 rounded-lg shadow-md">
@@ -42,6 +44,11 @@ export const SideBar = () => {
               <span className="font-medium text-sm">Add Notes</span>
             </Button>
           </li>
+          {notes.map((note: any) => (
+            <p className="text-xs bg-gray-100 p-2 rounded-md mt-1 text-gray-900">
+              {note.title}
+            </p>
+          ))}
         </ul>
       </div>
 
